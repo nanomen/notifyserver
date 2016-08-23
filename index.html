@@ -13,7 +13,6 @@
   var socket = io(''),
       timeRootEl = document.getElementById('timeRoot'),
       btnEl = document.getElementById('btn');
-  //var socket = io('//10.11.112.169:3000/');
 
   socket.on('connect', function(){
     console.log('connect');
@@ -30,6 +29,8 @@
   btnEl.addEventListener('click', function(e){
 
     socket.emit('getTime');
+
+    console.log('getTime');
 
   }, false);
 </script>
