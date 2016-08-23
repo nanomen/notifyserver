@@ -22,18 +22,12 @@
     console.log('disconnect');
   });
 
-  socket.on('setTime', function (timeString) {
-    console.log('setTime');
-    timeRootEl.innerHTML = '' + timeString;
-  });
-
   socket.on('settime', function (timeString) {
-    console.log('setTime');
     timeRootEl.innerHTML = '' + timeString;
   });
 
   btnEl.addEventListener('click', function(e){
-    socket.emit('getTime');
+    socket.emit('gettime');
   }, false);
 </script>
 </body>
