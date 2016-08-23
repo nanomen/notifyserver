@@ -6,10 +6,13 @@
 <body>
   <div>
     Time: <span id="timeRoot"></span>
+    <br>
+    <button id="btn">получить время</button>
   </div>
 <script>
   var socket = io(''),
-      timeRootEl = document.getElementById('timeRoot');
+      timeRootEl = document.getElementById('timeRoot'),
+      btnEl = document.betElementById('btn');
   //var socket = io('//10.11.112.169:3000/');
 
   socket.on('connect', function(){
@@ -20,12 +23,18 @@
     console.log('disconnect');
   });
 
-  socket.on('time', function (timeString) {
+  socket.on('setTime', function (timeString) {
     console.log(timeString);
     console.log(timeRootEl);
 
     timeRootEl.innerHTML = '' + timeString;
   });
+
+  btnEl.addEventListener('click', function(e){
+
+    socket.emit('getTime');
+
+  }, false);
 </script>
 </body>
 </html>

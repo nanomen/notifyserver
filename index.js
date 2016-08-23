@@ -13,6 +13,13 @@ io.on('connection', (socket) => {
 });
 
 // Посылаем события
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+setTime();
+
+io.on('getTime', setTime);
+
+
+var setTime = () => {
+  io.emit('setTime', new Date().toTimeString());
+};
 
 http.listen((process.env.PORT || 5000), () => console.log('listening on *:' + (process.env.PORT || 5000)));
