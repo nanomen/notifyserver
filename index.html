@@ -16,9 +16,11 @@
     <div id="inputRoot"></div>
   </div>
 <script>
-  var socket = io(''),
+  var socket = io('https://cryptic-coast-56094.herokuapp.com/'),
       timeRootEl = document.getElementById('timeRoot'),
-      btnEl = document.getElementById('btn');
+      btnEl = document.getElementById('btn'),
+      inputBtnEl = document.getElementById('inputBtn'),
+      inputEl = document.getElementById('input');
 
   socket.on('connect', function(){
     console.log('connect');
@@ -30,11 +32,11 @@
 
   socket.on('settime', function (timeString) {
     console.log('settime');
-    timeRootEl.innerHTML = '' + timeString;
+    timeRootEl.innerHTML = timeString;
   });
 
   socket.on('setmsg', function (data) {
-    console.log(msg);
+    console.log(data);
     inputRoot.innerHTML = data.msg;
   });
 
@@ -43,7 +45,6 @@
   }, false);
 
   inputBtnEl.addEventListener('click', function(e){
-    console.log(inputEl.value);
     socket.emit('sendmsg', {
       msg: inputEl.value
     });
