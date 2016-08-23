@@ -24,9 +24,6 @@
   });
 
   socket.on('setTime', function (timeString) {
-    console.log(timeString);
-    console.log(timeRootEl);
-
     timeRootEl.innerHTML = '' + timeString;
   });
 

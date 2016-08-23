@@ -15,10 +15,10 @@ io.on('connection', (socket) => {
 // Посылаем события
 setTime();
 
-io.on('getTime', setTime);
+//io.on('getTime', setTime);
 
 
-var setTime = () => {
+setTime function() {
   io.emit('setTime', new Date().toTimeString());
 };
 
