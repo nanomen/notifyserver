@@ -26,6 +26,10 @@
     timeRootEl.innerHTML = '' + timeString;
   });
 
+  socket.on('time', function(timeString) {
+    console.log(timeString);
+  });
+
   btnEl.addEventListener('click', function(e){
     socket.emit('gettime');
   }, false);
