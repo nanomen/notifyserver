@@ -27,8 +27,20 @@
     timeRootEl.innerHTML = '' + timeString;
   });
 
+  socket.on('setmsg', function (data) {
+    console.log(msg);
+    inputRoot.innerHTML = data.msg;
+  });
+
   btnEl.addEventListener('click', function(e){
     socket.emit('gettime');
+  }, false);
+
+  inputBtnEl.addEventListener('click', function(e){
+    console.log(inputEl.value);
+    socket.emit('sendmsg', {
+      msg: inputEl.value
+    });
   }, false);
 </script>
 </body>
