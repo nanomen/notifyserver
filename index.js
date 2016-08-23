@@ -13,13 +13,12 @@ io.on('connection', (socket) => {
 });
 
 // Посылаем события
+io.emit('setTime', new Date().toTimeString());
 setTime();
+io.on('getTime', setTime);
 
-//io.on('getTime', setTime);
-
-
-setTime function() {
+function setTime() {
   io.emit('setTime', new Date().toTimeString());
-};
+}
 
 http.listen((process.env.PORT || 5000), () => console.log('listening on *:' + (process.env.PORT || 5000)));
