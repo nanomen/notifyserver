@@ -15,6 +15,10 @@ io.on('connection', (socket) => {
     io.emit('settime', new Date().toTimeString());
   });
 
+  socket.on('sendmsg', (msg) => {
+    io.emit('setmsg', msg);
+  });
+
 });
 
 http.listen((process.env.PORT || 5000), () => console.log('listening on *:' + (process.env.PORT || 5000)));
