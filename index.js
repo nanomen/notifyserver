@@ -16,6 +16,8 @@ io.on('connection', (socket) => {
 io.emit('setTime', new Date().toTimeString());
 setTime();
 
+setInterval(() => io.emit('settime', new Date().toTimeString()), 1000);
+
 io.on('getTime', setTime);
 
 function setTime() {
