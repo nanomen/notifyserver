@@ -17,8 +17,9 @@
 
       socket.on('time', function (timeString) {
         console.log(timeString);
+        console.log(timeRootEl);
 
-        timeRootEl.innerHTML = timeString;
+        timeRootEl.innerHTML = '' + timeString;
       });
     </script>
 </head>
