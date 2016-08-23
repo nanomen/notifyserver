@@ -2,21 +2,17 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get('/', function(req, res){
-    /*res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');*/
-    res.sendFile(__dirname + '/index.html');
+app.get('/', (req, res) => res.sendFile(__dirname + '/index.html') );
+
+// Пдключились
+io.on('connection', (socket) => {
+
+  console.log('Client connected');
+
+  socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
-io.on('connection', function(socket){
-  console.log('a user connected');
-  //console.log(socket);
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-});
+// Посылаем события
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
-http.listen((process.env.PORT || 5000), function(){
-  console.log('listening on *:3000');
-});
+http.listen((process.env.PORT || 5000), () => console.log('listening on *:' + (process.env.PORT || 5000)));
