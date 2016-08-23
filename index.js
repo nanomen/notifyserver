@@ -10,13 +10,16 @@ io.on('connection', (socket) => {
   console.log('Client connected');
 
   socket.on('disconnect', () => console.log('Client disconnected'));
+
+  socket.on('gettime', (socket) => {
+    io.emit('settime', new Date().toTimeString());
+  };
 });
 
 // Посылаем события
 //setTime();
-(function(){
-  io.emit('settime', new Date().toTimeString());
-})();
+io.emit('settime', new Date().toTimeString());
+
 
 //io.on('gettime', setTime);
 
