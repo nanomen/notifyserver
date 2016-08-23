@@ -16,12 +16,12 @@ io.on('connection', (socket) => {
 //setTime();
 io.emit('settime', new Date().toTimeString());
 
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+//setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
-io.on('gettime', setTime);
+//io.on('gettime', setTime);
 
-function setTime() {
+/*function setTime() {
   io.emit('settime', new Date().toTimeString());
-}
+}*/
 
 http.listen((process.env.PORT || 5000), () => console.log('listening on *:' + (process.env.PORT || 5000)));

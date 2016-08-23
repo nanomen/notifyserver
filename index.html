@@ -23,16 +23,13 @@
   });
 
   socket.on('settime', function (timeString) {
+    console.log('settime');
     timeRootEl.innerHTML = '' + timeString;
   });
 
-  socket.on('time', function(timeString) {
-    console.log(timeString);
-  });
-
-  btnEl.addEventListener('click', function(e){
+  /*btnEl.addEventListener('click', function(e){
     socket.emit('gettime');
-  }, false);
+  }, false);*/
 </script>
 </body>
 </html>
