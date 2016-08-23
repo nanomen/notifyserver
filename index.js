@@ -11,9 +11,9 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => console.log('Client disconnected'));
 
-  socket.on('gettime', (socket) => {
+  socket.on('gettime', () => {
     io.emit('settime', new Date().toTimeString());
-  };
+  });
 });
 
 // Посылаем события
