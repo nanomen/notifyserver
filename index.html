@@ -36,8 +36,9 @@
   });
 
   socket.on('setmsg', function (data) {
-    console.log(data);
-    inputRoot.innerHTML = data.msg;
+    var div = document.createElement('div');
+    div.innerHTML = data.msg;
+    inputRoot.appendChild(div);
   });
 
   btnEl.addEventListener('click', function(e){
