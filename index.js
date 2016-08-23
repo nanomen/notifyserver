@@ -13,7 +13,8 @@ io.on('connection', (socket) => {
 });
 
 // Посылаем события
-setTime();
+//setTime();
+io.emit('settime', new Date().toTimeString());
 
 io.on('gettime', setTime);
 
