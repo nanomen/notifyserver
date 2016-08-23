@@ -39,6 +39,10 @@
     var div = document.createElement('div');
     div.innerHTML = data.msg;
     inputRoot.appendChild(div);
+
+    sendNotification(data.msg, {
+      body: 'тело сообщения чтоль?'
+    });
   });
 
   btnEl.addEventListener('click', function(e){
@@ -50,6 +54,31 @@
       msg: inputEl.value
     });
   }, false);
+
+function sendNotification(title, options) {
+
+  // Проверим, поддерживает ли браузер HTML5 Notifications
+  if ("Notification" in window) {
+
+    if (Notification.permission === "granted") {
+
+      new Notification(title, options);
+
+    } else if (Notification.permission !== 'denied') {
+
+      Notification.requestPermission(function(permission) {
+        if (permission === "granted") {
+          new Notification(title, options);
+        } else {
+          console.log('Вы запретили показывать уведомления');
+        }
+      });
+
+    }
+
+  }
+
+}
 </script>
 </body>
 </html>
