@@ -50,6 +50,8 @@ sharedWorker.port.addEventListener('message', onSharedWorkerMessage, false);
  */
 function onSharedWorkerMessage(e) {
 
+    console.log(e);
+
     var
 
         // Сокращенный путь до данных
