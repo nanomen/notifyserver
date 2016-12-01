@@ -122,7 +122,13 @@ function onSharedWorkerMessage(e) {
  * В РЕАЛЬНОЙ ЖИЗНИ УДАЛИТЬ
  */
 
-var btn = document.getElementById('btn');
+var
+
+    socket = io.connect('//cryptic-coast-56094.herokuapp.com/', {
+        secure: true,
+        reconnectionAttempts: 1
+    }),
+    btn = document.getElementById('btn');
 
 btn.addEventListener('click', function(e) {
 
