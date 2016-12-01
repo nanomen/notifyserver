@@ -1,106 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Test socket.io</title>
-    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-    <script>(function(global,factory){"use strict";if(typeof define==="function"&&define.amd){define(function(){return new(factory(global,global.document))})}else if(typeof module!=="undefined"&&module.exports){module.exports=new(factory(global,global.document))}else{global.Push=new(factory(global,global.document))}})(typeof window!=="undefined"?window:this,function(w,d){var Push=function(){var self=this,isUndefined=function(obj){return obj===undefined},isString=function(obj){return String(obj)===obj},isFunction=function(obj){return obj&&{}.toString.call(obj)==="[object Function]"},currentId=0,incompatibilityErrorMessage="PushError: push.js is incompatible with browser.",hasPermission=false,notifications={},lastWorkerPath=null,closeNotification=function(id){var errored=false,notification=notifications[id];if(typeof notification!=="undefined"){if(notification.close){notification.close()}else if(notification.cancel){notification.cancel()}else if(w.external&&w.external.msIsSiteMode){w.external.msSiteModeClearIconOverlay()}else{errored=true;throw new Error("Unable to close notification: unknown interface")}if(!errored){return removeNotification(id)}}return false},addNotification=function(notification){var id=currentId;notifications[id]=notification;currentId++;return id},removeNotification=function(id){var dict={},success=false,key;for(key in notifications){if(notifications.hasOwnProperty(key)){if(key!=id){dict[key]=notifications[key]}else{success=true}}}notifications=dict;return success},createCallback=function(title,options){var notification,wrapper,id,onClose;options=options||{};self.lastWorkerPath=options.serviceWorker||"sw.js";onClose=function(){removeNotification(id);if(isFunction(options.onClose)){options.onClose.call(this)}};if(w.Notification){try{notification=new w.Notification(title,{icon:isString(options.icon)||isUndefined(options.icon)?options.icon:options.icon.x32,body:options.body,tag:options.tag,requireInteraction:options.requireInteraction})}catch(e){if(w.navigator){w.navigator.serviceWorker.register(options.serviceWorker||"sw.js");w.navigator.serviceWorker.ready.then(function(registration){registration.showNotification(title,{icon:options.icon,body:options.body,vibrate:options.vibrate,tag:options.tag,data:options.data,requireInteraction:options.requireInteraction})})}}}else if(w.webkitNotifications){notification=w.webkitNotifications.createNotification(options.icon,title,options.body);notification.show()}else if(navigator.mozNotification){notification=navigator.mozNotification.createNotification(title,options.body,options.icon);notification.show()}else if(w.external&&w.external.msIsSiteMode()){w.external.msSiteModeClearIconOverlay();w.external.msSiteModeSetIconOverlay(isString(options.icon)||isUndefined(options.icon)?options.icon:options.icon.x16,title);w.external.msSiteModeActivate();notification={}}else{throw new Error("Unable to create notification: unknown interface")}id=addNotification(notification);wrapper={get:function(){return notification},close:function(){closeNotification(id)}};if(options.timeout){setTimeout(function(){wrapper.close()},options.timeout)}if(typeof notification!=="undefined"){if(isFunction(options.onShow))notification.addEventListener("show",options.onShow);if(isFunction(options.onError))notification.addEventListener("error",options.onError);if(isFunction(options.onClick))notification.addEventListener("click",options.onClick);notification.addEventListener("close",onClose);notification.addEventListener("cancel",onClose)}else if(isFunction(options.onClick)){if(isFunction(options.onClick)){w.addEventListener("notificationclick",function(event){options.onClick.call(event.notification)})}w.addEventListener("notificationclose",function(event){onClose.call(event.notification)})}return wrapper},Permission={DEFAULT:"default",GRANTED:"granted",DENIED:"denied"},Permissions=[Permission.GRANTED,Permission.DEFAULT,Permission.DENIED];self.Permission=Permission;self.Permission.request=function(onGranted,onDenied){if(!self.isSupported){throw new Error(incompatibilityErrorMessage)}callback=function(result){switch(result){case self.Permission.GRANTED:hasPermission=true;if(onGranted)onGranted();break;case self.Permission.DENIED:hasPermission=false;if(onDenied)onDenied();break}};if(w.Notification&&w.Notification.requestPermission){Notification.requestPermission(callback)}else if(w.webkitNotifications&&w.webkitNotifications.checkPermission){w.webkitNotifications.requestPermission(callback)}else{throw new Error(incompatibilityErrorMessage)}};self.Permission.has=function(){return hasPermission};self.Permission.get=function(){var permission;if(!self.isSupported){throw new Error(incompatibilityErrorMessage)}if(w.Notification&&w.Notification.permissionLevel){permission=w.Notification.permissionLevel}else if(w.webkitNotifications&&w.webkitNotifications.checkPermission){permission=Permissions[w.webkitNotifications.checkPermission()]}else if(w.Notification&&w.Notification.permission){permission=w.Notification.permission}else if(navigator.mozNotification){permission=Permissions.GRANTED}else if(w.external&&w.external.msIsSiteMode()!==undefined){permission=w.external.msIsSiteMode()?Permission.GRANTED:Permission.DEFAULT}else{throw new Error(incompatibilityErrorMessage)}return permission};self.isSupported=function(){var isSupported=false;try{isSupported=!!(w.Notification||w.webkitNotifications||navigator.mozNotification||w.external&&w.external.msIsSiteMode()!==undefined)}catch(e){}return isSupported}();self.create=function(title,options){if(!self.isSupported){throw new Error(incompatibilityErrorMessage)}if(!isString(title)){throw new Error("PushError: Title of notification must be a string")}if(!self.Permission.has()){return new Promise(function(resolve,reject){self.Permission.request(function(){try{resolve(createCallback(title,options))}catch(e){reject(e)}},function(){reject("Permission request declined")})})}else{return new Promise(function(resolve,reject){try{resolve(createCallback(title,options))}catch(e){reject(e)}})}};self.count=function(){var count=0,key;for(key in notifications){count++}return count},self.__lastWorkerPath=function(){return self.lastWorkerPath},self.close=function(tag){var key;for(key in notifications){notification=notifications[key];if(notification.tag===tag){return closeNotification(key)}}};self.clear=function(){var i,success=true;for(key in notifications){var didClose=closeNotification(key);success=success&&didClose}return success}};return Push});</script>
+    <meta charset="UTF-8">
+    <title>Notification</title>
 </head>
 <body>
-  <div>
-    Time: <span id="timeRoot"></span>
-    <br>
-    <button id="btn">получить время</button>
-    <br>
-    <input type="text" id="input">
-    <br>
-    <button id="inputBtn">тправить смс</button>
-    <br>
-    <div id="inputRoot"></div>
-  </div>
-<script>
-  var socket = io('https://cryptic-coast-56094.herokuapp.com/'),
-      timeRootEl = document.getElementById('timeRoot'),
-      btnEl = document.getElementById('btn'),
-      inputBtnEl = document.getElementById('inputBtn'),
-      inputEl = document.getElementById('input');
-
-  socket.on('connect', function(){
-    console.log('connect');
-  });
-
-  socket.on('disconnect', function(){
-    console.log('disconnect');
-  });
-
-  socket.on('settime', function (timeString) {
-    console.log('settime');
-    timeRootEl.innerHTML = timeString;
-  });
-
-  socket.on('setmsg', function (data) {
-    var div = document.createElement('div');
-    div.innerHTML = data.msg;
-    inputRoot.appendChild(div);
-
-    sendNotification(data.msg, {
-      body: 'тело сообщения'
-    });
-  });
-
-  btnEl.addEventListener('click', function(e){
-    socket.emit('gettime');
-  }, false);
-
-  inputBtnEl.addEventListener('click', function(e){
-    socket.emit('sendmsg', {
-      msg: inputEl.value
-    });
-  }, false);
-
-function sendNotification(title, options) {
-
-  // var notify = null;
-
-  Push.create(title, {
-      body: 'тело сообщения',
-      // icon: 'icon.png',
-      timeout: 4000,
-      onClick: function () {
-          window.focus();
-          this.close();
-      }
-  });
-
-  // Проверим, поддерживает ли браузер HTML5 Notifications
-  // if ("Notification" in window) {
-
-  //   if (Notification.permission === "granted") {
-
-  //     notify = new Notification(title, options);
-
-  //   } else if (Notification.permission !== 'denied') {
-
-  //     Notification.requestPermission(function(permission) {
-  //       if (permission === "granted") {
-  //         notify = new Notification(title, options);
-  //       } else {
-  //         console.log('Вы запретили показывать уведомления');
-  //       }
-  //     });
-
-  //   }
-
-  // }
-
-  // if (!!notify) {
-  //   setTimeout(notify.close.bind(notify), 4000);
-  // }
-
-}
-
-window.addEventListener("message", function(e){
-  console.log('да это я');
-  console.log(e);
-}, false);
-</script>
+    <button id="btn">Отправить нотификацию</button>
+    <script src="/scripts/notify.js"></script>
 </body>
 </html>

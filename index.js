@@ -6,18 +6,24 @@ app.get('/', (req, res) => res.sendFile(__dirname + '/index.html') );
 
 // Пдключились
 io.on('connection', (socket) => {
-  console.log('Client connected');
-  socket.on('disconnect', () => console.log('Client disconnected'));
 
+    console.log('Client connected');
 
-  io.emit('settime', new Date().toTimeString());
-  socket.on('gettime', () => {
-    io.emit('settime', new Date().toTimeString());
-  });
+    socket.on('disconnect', () => console.log('Client disconnected'));
 
-  socket.on('sendmsg', (msg) => {
-    io.emit('setmsg', msg);
-  });
+    socket.on('send.notification', () => {
+
+        io.emit('notification', {
+            data: {
+                title: 'Title notify',
+                link: '/',
+                tag: 'tag',
+                body: 'Body notify',
+                icon: '//s2.favim.com/mini/34/animal-awesome-by-ana-mendes-cat-citty-271169.jpg'
+            }
+        });
+
+    });
 
 });
 
