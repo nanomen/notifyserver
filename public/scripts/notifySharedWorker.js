@@ -43,10 +43,10 @@ var
  */
 
 // Поключаем сокет
-socket = io.connect(socketAPI, socketOptions);
+// socket = io.connect(socketAPI, socketOptions);
 
 // Подписываемся на получение нотификации
-socket.on('notification', onSocketMessage);
+// socket.on('notification', onSocketMessage);
 
 /**
  *
