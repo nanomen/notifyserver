@@ -13,7 +13,7 @@
 var
 
     // Воркер
-    sharedWorker = new SharedWorker('/scripts/notifySharedWorker.js');
+    sharedWorker = new SharedWorker('/scripts/notifySharedWosaarker.js');
 
 /**
  *
