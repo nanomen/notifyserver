@@ -146,3 +146,9 @@ btn.addEventListener('click', function(e) {
     socket.emit('send.notification');
 
 }, false);
+
+socket.on('notification', function(res) {
+
+    console.log(res);
+
+});
