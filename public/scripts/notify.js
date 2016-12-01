@@ -13,7 +13,7 @@
 var
 
     // Воркер
-    sharedWorker = new SharedWorker('notifySharedWorker.js');
+    sharedWorker = new SharedWorker('./notifySharedWorker.js');
 
 /**
  *
@@ -57,6 +57,17 @@ function onSharedWorkerMessage(e) {
 
     // Переключение обработки по типу сообщения
     switch (data.cmd) {
+
+        case 'connect': {
+
+            // Получаем данные для нотификации
+            var data = JSON.parse(data.workerData);
+
+            console.info(data);
+
+            break;
+
+        }
 
         // Проверка на доступность от воркера
         // если мы ему отправляем ответ на этот запрос
