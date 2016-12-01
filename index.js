@@ -2,7 +2,13 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get('/', (req, res) => res.sendFile(__dirname + '/index.html') );
+app.use(express.static('scripts'));
+
+app.get('/', (req, res) => {
+
+    res.sendFile(__dirname + '/index.html')
+
+});
 
 // Пдключились
 io.on('connection', (socket) => {
