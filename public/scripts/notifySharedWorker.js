@@ -71,6 +71,8 @@ self.addEventListener('connect', onConnect, false);
  */
 function onConnect(e) {
 
+    port.postMessage('hello');
+
     var
 
         // Сохраняем порт подключения
@@ -86,10 +88,6 @@ function onConnect(e) {
         connectionId: connectionId
     });
 
-    port.postMessage({
-        cmd: 'connect',
-        workerData: JSON.stringify('on connect')
-    });
 
     // Запускаем прослушивание порта
     port.start();
