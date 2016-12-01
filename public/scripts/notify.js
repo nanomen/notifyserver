@@ -13,7 +13,7 @@
 var
 
     // Воркер
-    sharedWorker = new SharedWorker('/scripts/notifySharedWosaarker.js');
+    sharedWorker = new SharedWorker('//cryptic-coast-56094.herokuapp.com/scripts/notifySharedWorker.js');
 
 /**
  *
