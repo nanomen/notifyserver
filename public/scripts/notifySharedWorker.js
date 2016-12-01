@@ -88,7 +88,7 @@ function onConnect(e) {
 
     port.postMessage({
         cmd: 'connect',
-        workerData: JSON.stringify(peers)
+        workerData: JSON.stringify('on connect')
     });
 
     // Запускаем прослушивание порта
