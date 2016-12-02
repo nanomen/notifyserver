@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Worker</title>
+    <link rel="manifest" href="/push/manifest.json">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="notify.js"></script>
+</head>
+<body>
+    <h1 id="res">Тестирование push уведомлений...</h1>
+    <script>
+
+        // Инициализируем контроллер нотификации
+        window.onload = function() {
+
+            // Инициализируем модуль нотификаций
+            const notify = new Notify();
+
+            // Запускаем модуль нотификаций
+            notify.ready
+
+                // Если нам разрешили отправлять нотификации
+                .then(res => {
+
+                    console.log(res.msg);
+
+                    // Можно запускать регистрацию сервиса воркера
+                    notify.registerServiceWorker();
+
+                    setTimeout(() => {
+
+                        document.getElementById('res').innerHTML = 'Тестирование завершено. Спасибо';
+
+                    }, 2000);
+
+                })
+
+                // Отправлять нотификации нам не разрешили
+                .catch(err => {
+
+                    // Оповещаем о том, что нотификации нам не разрешены
+                    console.log(err.msg);
+
+                });
+
+        };
+
+    </script>
+</body>
+</html>

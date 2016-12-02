@@ -1,0 +1,33 @@
+{
+	"name": "",
+	"short_name": "",
+	"description": "",
+	"start_url": "?utm_source=website&utm_medium=push&utm_campaign=breaking",
+	"orientation": "any",
+	"display": "standalone",
+	"lang": "ru",
+	"icons": [
+		{
+			"src": "favicon.ico",
+			"sizes": "16x16",
+			"type": "image/icon"
+		},
+		{
+			"src": "touch-icon-ipad.png",
+			"sizes": "76x76",
+			"type": "image/png"
+		},
+		{
+			"src": "touch-icon-iphone-retina.png",
+			"sizes": "120x120",
+			"type": "image/png"
+		},
+		{
+			"src": "touch-icon-ipad-retina.png",
+			"sizes": "152x152",
+			"type": "image/png"
+		}
+	],
+	"gcm_sender_id": "SENDER_GOOGLE_ID",
+	"gcm_user_visible_only": true
+}
