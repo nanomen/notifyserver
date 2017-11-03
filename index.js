@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 
 });
 
-// Пдключились
+// Подключились
 io.on('connection', (socket) => {
 
     console.log('Client connected');
